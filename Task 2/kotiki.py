@@ -3,9 +3,10 @@ cats_list = []
 
 
 def get_cats_info(path):
-    
-    with open (path, "r", encoding= 'utf8') as file: 
-        lines = [el.strip() for el in file.readlines()]
+
+    try:
+        with open (path, "r", encoding= 'utf8') as file: 
+           lines = [el.strip() for el in file.readlines()]
 
         for line in lines:
             data = line.split(",") 
@@ -14,8 +15,13 @@ def get_cats_info(path):
                         "name": parts[1],
                         "age": parts[2]
             }
-        cats_list.append(cat_info)
+        cats_list.append(cat_dict)
+        
+        return cats_list
+    
+    except FileNotFoundError:
+     print(f"Error: File '{path}' not found.")
+     return []
 
-    return cats_list
-
-
+info_pro_kotikov = get_cats_info("kotiki.txt")
+print(info_pro_kotikov)
