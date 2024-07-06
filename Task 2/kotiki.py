@@ -11,11 +11,12 @@ def get_cats_info(path):
         for line in lines:
             data = line.split(",") 
 
-            cat_dict = {"id": parts[0],
-                        "name": parts[1],
-                        "age": parts[2]
+            cat_dict = {"id": data[0],
+                        "name": data[1],
+                        "age": data[2]
             }
-        cats_list.append(cat_dict)
+            
+            cats_list.append(cat_dict)
         
         return cats_list
     
@@ -23,5 +24,5 @@ def get_cats_info(path):
      print(f"Error: File '{path}' not found.")
      return []
 
-info_pro_kotikov = get_cats_info("kotiki.txt")
+info_pro_kotikov = get_cats_info("pets_list.txt")
 print(info_pro_kotikov)
