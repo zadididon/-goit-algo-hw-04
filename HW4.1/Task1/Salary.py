@@ -3,8 +3,8 @@ from pathlib import Path
 
 # open file and read them:
 def total_salary(path):
-
-    with open (path, "r", encoding= 'utf8') as file: 
+    try:
+        with open (path, "r", encoding= 'utf8') as file: 
         lines = [el.strip() for el in file.readlines()]
 
 #total salary is now set at 0
@@ -23,6 +23,13 @@ def total_salary(path):
             
         average_salary = total / workers
         return (total, average_salary)
+    
+
+    except FileNotFoundError:
+        print(f"Error: File '{path}' not found.")
+        return {}
+
+
 
 
 total, average = total_salary("workers.txt")      
