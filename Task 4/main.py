@@ -61,6 +61,7 @@ def main():
         elif command == "all":
             print(show_contacts(args, contacts))
         else:
+            print(command, args)
             print("Invalid command.")
 
 
