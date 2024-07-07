@@ -37,6 +37,16 @@ def show_contacts(args, contacts):
         return("You have no friends.")
     else:
         return "\n".join([f"{name}: {phone}" for name, phone in contacts.items()])
+    
+def delete_friend(args, contacts):
+    if len(args) != 1:
+        return "Please provide name only."
+    name = args[0]
+    if name in contacts:
+        removed = contacts.pop(name)
+        return f"{name} was removed from your contacts."
+    else:
+        return f"No contact found under the name {name}."
 
 
 
@@ -60,6 +70,8 @@ def main():
             print(show_phone_number(args, contacts))
         elif command == "all":
             print(show_contacts(args, contacts))
+        elif command == "delete":
+            print(delete_friend(args, contacts))
         else:
             print(command, args)
             print("Invalid command.")
